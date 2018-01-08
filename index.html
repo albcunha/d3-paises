@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
 <meta charset="utf-8">
 <title>Parallel Coordinates Ordinal Axis</title>
 <style>
@@ -15,7 +16,7 @@
 
     .foreground path {
         fill: none;
-       stroke-width: 2px;
+        stroke-width: 2px;
     }
 
     .axis .title {
@@ -53,6 +54,7 @@
         stroke-opacity: .5;
         stroke-width: 1px;
     }
+
     div.tooltip {
         position: absolute;
         width: 200px;
@@ -66,7 +68,7 @@
     }
 </style>
 <body>
-    
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <script>
 
@@ -152,7 +154,7 @@
                 .attr("class", "axis")
                 .each(function (d) {
                     d3.select(this).call(yAxis.scale(d.scale));
-                    })  
+                })
                 .append("text")
                 .attr("class", "title")
                 .attr("text-anchor", "middle")
@@ -161,7 +163,7 @@
                     return d.name;
                 });
 
-            
+
             var ordinal_labels = svg.selectAll(".axis text")
                 .data(data)
                 .on("mouseover", mouseover)
@@ -213,7 +215,7 @@
             function moveToFront() {
                 this.parentNode.appendChild(this);
             }
-           
+
         });
 
 
@@ -222,5 +224,7 @@
                 return [x(dimension.name), dimension.scale(d[dimension.name])];
             }));
         }
-       
+
     </script>
+</body>
+</html>
