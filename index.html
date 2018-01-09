@@ -90,7 +90,7 @@
             
             width = chartDiv.clientWidth - margin.left - margin.right,
 
-            height = chartDiv.clientHeight * 3.5 - margin.top - margin.bottom;
+            height = 1200- margin.top - margin.bottom;
 
        
         var dimensions = [
@@ -99,7 +99,7 @@
                 scale: d3.scale.ordinal().rangePoints([0, height]),
                 type: "string"
             },
-            {
+            {   
                 name: "percepção de corrupção",
                 scale: d3.scale.linear().range([0, height]),
                 type: "number"
@@ -128,7 +128,6 @@
             .style("opacity", 0);
 
 
-     
         
         var svg = d3.select(chartDiv).append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -183,7 +182,9 @@
                 .attr("y", -9)
                 .text(function (d) {
                     return d.name;
-                });
+                })
+         
+
 
             
             var ordinal_labels = svg.selectAll(".axis text")
@@ -247,7 +248,34 @@
             }));
         }
 
-      
+      function wrap(text, width) {
+          text.each(function() {
+            var text = d3.select(this),
+                words = text.text().split(/\s+/).reverse(),
+                word,
+                line = [],
+                lineNumber = 0,
+                lineHeight = 1.1, // ems
+                y = text.attr("y"),
+                dy = parseFloat(text.attr("dy")),
+                tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+            while (word = words.pop()) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+              }
+            }
+          });
+        }
+
+        function type(d) {
+          d.value = +d.value;
+          return d;
+        }
     
     </script>
 
