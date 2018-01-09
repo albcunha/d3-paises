@@ -16,7 +16,7 @@
 
     .foreground path {
         fill: none;
-       stroke-width: 1.5px;
+       stroke-width: 1.5 px;
     }
 
     .axis .title {
@@ -153,6 +153,7 @@
 
             });
 
+
             svg.append("g")
                 .attr("class", "background")
                 .selectAll("path")
@@ -184,8 +185,6 @@
                     return d.name;
                 })
          
-
-
             
             var ordinal_labels = svg.selectAll(".axis text")
                 .data(data)
@@ -206,8 +205,8 @@
                 div.html('<b> País: <span style="color:red;">' + d.país + "</b></span><br/>" +
                     "<b>Rank. Percep. de Corrupção: </b>" + d["percepção de corrupção"] + "<br/>" +
                     "<b>Rank. Felicidade: </b>" + d["nível de felicidade"])
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    .style("left", (d3.event.pageX - 60) + "px")
+                    .style("top", (d3.event.pageY - 60) + "px");
 
 
                 // this could be more elegant
