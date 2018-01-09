@@ -2,6 +2,7 @@
 <meta charset="utf-8">
 <title>Parallel Coordinates Ordinal Axis</title>
 <style>
+
     svg {
         font: 10px Segoe UI;
     }
@@ -64,13 +65,21 @@
         border-radius: 8px;
         pointer-events: none;
     }
+   
+
+   
+
+
 </style>
 <body>
+    
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <script>
 
-        var margin = { top: 30, right: 100, bottom: 20, left: 200 },
-            width = 960 - margin.left - margin.right,
+        var margin = { top: 30, right: 50, bottom: 20, left: 200 },
+            
+            width = window.innerWidth < 960  ? window.innerWidth - 20 : 920 - margin.left - margin.right,
+
             height = 1200 - margin.top - margin.bottom;
 
         var dimensions = [
@@ -221,7 +230,10 @@
                 return [x(dimension.name), dimension.scale(d[dimension.name])];
             }));
         }
-       
+
+      
+    
     </script>
+
 </body>
 </html>
