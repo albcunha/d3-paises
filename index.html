@@ -66,22 +66,33 @@
         pointer-events: none;
     }
    
-
-   
+      /* Make the chart container fill the page using CSS. */
+      #chart {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+      }
+  
 
 
 </style>
 <body>
-    
+    <div id="chart"></div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     <script>
 
-        var margin = { top: 30, right: 50, bottom: 20, left: 200 },
+        var chartDiv = document.getElementById("chart");
+
+      
+        var margin = { top: 30, right: 100, bottom: 20, left: 200 },
             
-            width = window.innerWidth < 960  ? window.innerWidth - 20 : 920 - margin.left - margin.right,
+            width = chartDiv.clientWidth - margin.left - margin.right,
 
-            height = 1200 - margin.top - margin.bottom;
+            height = chartDiv.clientHeight * 3.5 - margin.top - margin.bottom;
 
+       
         var dimensions = [
             {
                 name: "país",
@@ -110,11 +121,16 @@
         var yAxis = d3.svg.axis()
             .orient("left");
 
+
+
         var div = d3.select("body").append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
 
-        var svg = d3.select("body").append("svg")
+
+     
+        
+        var svg = d3.select(chartDiv).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
